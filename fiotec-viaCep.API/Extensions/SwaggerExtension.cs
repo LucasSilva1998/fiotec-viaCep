@@ -17,7 +17,7 @@ namespace fiotec_viaCep.API.Extensions
                     {
                         Name = "Lucas Pereira",
                         Email = "lucassilva@fiotec.fiocruz.com",
-                        Url = new Uri("https://github.com/LucasSilva1998/FiotecProva")
+                        Url = new Uri("https://github.com/LucasSilva1998/fiotec-viaCep")
                     }
                 });
              
