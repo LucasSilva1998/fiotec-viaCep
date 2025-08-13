@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fiotec-viaCep.API", "fiotec-viaCep.API\fiotec-viaCep.API.csproj", "{68BE89CE-C111-4E89-8236-8DC4E5E432F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{A00F7C1A-EBCC-4AC8-A5D1-409C549B771F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{579C952A-4199-4F17-BAE6-4BE9AD807598}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{9D4B3883-D570-4C37-A5A4-D62AC469CDB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68BE89CE-C111-4E89-8236-8DC4E5E432F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68BE89CE-C111-4E89-8236-8DC4E5E432F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68BE89CE-C111-4E89-8236-8DC4E5E432F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68BE89CE-C111-4E89-8236-8DC4E5E432F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{68BE89CE-C111-4E89-8236-8DC4E5E432F3} = {A00F7C1A-EBCC-4AC8-A5D1-409C549B771F}
+		{A00F7C1A-EBCC-4AC8-A5D1-409C549B771F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{579C952A-4199-4F17-BAE6-4BE9AD807598} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9D4B3883-D570-4C37-A5A4-D62AC469CDB6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4AA57E24-ECA9-41A4-98AA-6FA2C9E6C9E0}
+	EndGlobalSection
+EndGlobal
