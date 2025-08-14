@@ -1,11 +1,9 @@
 ﻿using fiotec_viaCep.Infra.Services.Dto;
 using fiotec_viaCep.Infra.Services.Interface;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace fiotec_viaCep.Infra.Services.Services
@@ -17,7 +15,6 @@ namespace fiotec_viaCep.Infra.Services.Services
         public ViaCepService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://viacep.com.br/ws/");
         }
 
         public async Task<ViaCepResponse?> BuscarEnderecoPorCepAsync(string cep, CancellationToken ct = default)

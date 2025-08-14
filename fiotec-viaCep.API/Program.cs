@@ -3,34 +3,48 @@ using fiotec_viaCep.API.Middlewares;
 using fiotec_viaCep.Application.Extensions;
 using fiotec_viaCep.Infra.Services.Interface;
 using fiotec_viaCep.Infra.Services.Services;
+using Polly;
+using Polly.Extensions.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 
-// Application Services
+// Application Services 
 builder.Services.AddApplicationServices();
 
-// Infra HTTP externo (ViaCep)
-builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
+// Configurações ViaCEP a partir do appsettings.json
+var viaCepSettings = builder.Configuration.GetSection("ViaCepSettings");
 
-// Adiciona a documentação do Swagger via extensão
+// HttpClient para o serviço ViaCEP com Timeout e Retry 
+builder.Services.AddHttpClient<IViaCepService, ViaCepService>(client =>
+{
+    client.BaseAddress = new Uri(viaCepSettings["BaseUrl"]);
+    client.Timeout = TimeSpan.FromSeconds(int.Parse(viaCepSettings["TimeoutSeconds"]));
+})
+.AddPolicyHandler(HttpPolicyExtensions
+    .HandleTransientHttpError() 
+    .WaitAndRetryAsync(
+        int.Parse(viaCepSettings["RetryCount"]),
+        retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
+    ));
+
+// Documentação do Swagger
 builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
-//Middlewares
+// Middlewares
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-// Configure the HTTP request pipeline.
+// Swagger no ambiente de desenvolvimento
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fiotec - ViaCEP API v1");
-        c.RoutePrefix = string.Empty; // Swagger na raiz: http://localhost:5000/
+        c.RoutePrefix = string.Empty; // Swagger na raiz
     });
 }
 
