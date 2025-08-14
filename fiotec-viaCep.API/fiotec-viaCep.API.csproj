@@ -13,7 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\fiotec-viaCep.Application\fiotec-viaCep.Application.csproj" />
+    <ProjectReference Include="..\fiotec-viaCep.Infra.Services\fiotec-viaCep.Infra.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 
 </Project>

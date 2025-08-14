@@ -1,23 +1,21 @@
 using fiotec_viaCep.API.Extensions;
+using fiotec_viaCep.Application.Extensions;
+using fiotec_viaCep.Infra.Services.Interface;
+using fiotec_viaCep.Infra.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
+// Application Services
+builder.Services.AddApplicationServices();
+
+// Infra HTTP externo (ViaCep)
+builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
+
 // Adiciona a documentação do Swagger via extensão
 builder.Services.AddSwaggerDocumentation();
-
-// Opcional: habilitar CORS se precisar
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy("AllowAll", builder =>
-//     {
-//         builder.AllowAnyOrigin()
-//                .AllowAnyHeader()
-//                .AllowAnyMethod();
-//     });
-// });
 
 var app = builder.Build();
 
@@ -31,10 +29,6 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty; // Swagger na raiz: http://localhost:5000/
     });
 }
-
-// app.UseHttpsRedirection(); // habilite se quiser HTTPS
-
-// app.UseCors("AllowAll"); // se habilitar CORS
 
 app.UseAuthorization();
 
