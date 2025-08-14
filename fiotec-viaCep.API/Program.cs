@@ -1,4 +1,5 @@
 using fiotec_viaCep.API.Extensions;
+using fiotec_viaCep.API.Middlewares;
 using fiotec_viaCep.Application.Extensions;
 using fiotec_viaCep.Infra.Services.Interface;
 using fiotec_viaCep.Infra.Services.Services;
@@ -18,6 +19,9 @@ builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
 builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
+
+//Middlewares
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
