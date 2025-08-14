@@ -15,7 +15,7 @@ namespace fiotec_viaCep.Application.Services
         public async Task<ViaCepResponse> ObterEnderecoPorCepAsync(string cep, CancellationToken ct = default)
         {
             if (string.IsNullOrWhiteSpace(cep))
-                throw new ArgumentException("O CEP não pode ser vazio.", nameof(cep));
+                throw new ParametroInvalidoException("O CEP não pode ser vazio.");
 
             var endereco = await viaCepService.BuscarEnderecoPorCepAsync(cep, ct);
 

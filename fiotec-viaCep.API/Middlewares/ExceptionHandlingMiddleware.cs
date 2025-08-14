@@ -1,8 +1,5 @@
 ﻿using fiotec_viaCep.Application.Exceptions;
-using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
-using System.Text.Json;
 
 namespace fiotec_viaCep.API.Middlewares
 {
@@ -22,6 +19,11 @@ namespace fiotec_viaCep.API.Middlewares
             try
             {
                 await _next(context);
+            }
+            catch (ParametroInvalidoException ex)
+            {
+                _logger.LogWarning(ex, "Parâmetro inválido.");
+                await HandleExceptionAsync(context, HttpStatusCode.BadRequest, ex.Message);
             }
             catch (NaoEncontradoException ex)
             {
