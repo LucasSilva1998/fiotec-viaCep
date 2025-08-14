@@ -1,51 +1,39 @@
-ViaCEP Service API
+# FiotecViaCep - API de Consulta de Endereços
+
+API RESTful desenvolvida em .NET 9 com arquitetura em camadas, responsável por consultar endereços a partir do CEP utilizando o serviço público ViaCEP. Centraliza o serviço de consulta para ser reutilizado por outras APIs, garantindo consistência e simplicidade na integração.
+
+---
+
+## Tecnologias Utilizadas
+
+- ASP.NET Core 9.0
+- HttpClientFactory para chamadas externas
+- Polly para retry em falhas transientes
+- CancellationToken suportado
+- Swagger (Swashbuckle)
+- Clean Architecture / DDD
+- JsonSerializer (System.Text.Json)
 
 
+---
 
+## Como executar localmente
 
+### Pré-requisitos
 
+- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 
-📝 Descrição
+### 1. Restaurar pacotes
 
-API responsável por consultar endereços a partir de um CEP utilizando o serviço público ViaCEP.
-Centraliza o serviço de consulta para ser reutilizado por outras APIs, evitando múltiplas integrações diretas.
+dotnet restore
 
-🚀 Endpoints
-Método	Endpoint	Descrição	Resposta
-GET	/api/endereco/{cep}	Consulta endereço pelo CEP	200 OK → Retorna o endereço completo
-404 Not Found → CEP não encontrado
-500 Internal Server Error → Erro inesperado
+### 2. Executar API
+cd fiotec-viaCep.API
+dotnet run
 
-Exemplo de requisição:
+---
 
-GET http://localhost:5000/api/endereco/21040361
-
-
-Exemplo de retorno (200 OK):
-
-{
-  "cep": "21040-361",
-  "logradouro": "Rua Exemplo",
-  "complemento": "",
-  "bairro": "Bangu",
-  "localidade": "Rio de Janeiro",
-  "uf": "RJ",
-  "unidade": "",
-  "ibge": "3304557",
-  "gia": ""
-}
-
-📑 Swagger
-
-A documentação da API está disponível via Swagger:
-
-http://localhost:5000/
-
-
-Exemplo de tela do Swagger:
-
-
-⚙️ Configuração (appsettings.json)
+## Configuração (appsettings.json)
 {
   "Logging": {
     "LogLevel": {
@@ -61,41 +49,34 @@ Exemplo de tela do Swagger:
   }
 }
 
-🏛️ Arquitetura
+---
 
-A API segue Clean Architecture / DDD:
+## Endpoints
+GET	/api/endereco/{cep}	Consulta endereço pelo CEP<br><br>
+200 OK → Retorna o endereço completo<br>
+404 Not Found → CEP não encontrado<br>
+500 Internal Server Error → Erro inesperado
 
-fiotec-viaCep
-│
-├── API (Presentation)
-│   ├── Controllers
-│   ├── Middlewares
-│   └── Extensions
-│
-├── Application
-│   ├── Interfaces
-│   └── Services
-│
-├── Infra
-│   ├── Services
-│   └── DTOs
-│
-└── Tests
-    └── Integration
+# Exemplo de requisição:
 
-Middlewares
+GET http://localhost:5000/api/endereco/21040361
 
-ExceptionHandlingMiddleware: captura exceções globais, como NaoEncontradoException e erros 500, retornando JSON padronizado.
 
-HttpClient
+# Exemplo de retorno (200 OK):
 
-Timeout e Retry configuráveis via appsettings.json
+<img width="353" height="271" alt="image" src="https://github.com/user-attachments/assets/6649ec55-7cd6-4ebf-bb29-0d81b75610e1" />
 
-Polly para retry em falhas transientes
+----
 
-CancellationToken suportado
+# Boas práticas aplicadas
 
-🧪 Testes
+- Clean Architecture / DDD: separação clara entre Presentation, Application e Infrastructure
+- Middleware de tratamento de exceções: captura erros globais e retorna JSON padronizado
+- Retry e Timeout: implementados via HttpClientFactory e Polly para chamadas externas
+- CancellationToken: suporta cancelamento de requisições do cliente
+- Swagger: documentação clara e interativa
+
+# Testes
 
 Testes de integração criados na camada Infra.Tests
 
@@ -105,36 +86,6 @@ CEP válido → retorna endereço completo
 
 CEP inexistente → retorna null (mapeado para 404)
 
-Exemplo:
+## Executar testes:
 
-dotnet test fiotec_viaCep.Infra.Tests
-
-📌 Boas práticas aplicadas
-
-Clean Architecture / DDD
-
-Middleware para tratamento global de erros
-
-HttpClientFactory + Polly
-
-DTOs padronizados
-
-Swagger bem documentado
-
-CancellationToken suportado
-
-⚡ Como usar
-
-Clone o repositório:
-
-git clone https://github.com/LucasSilva1998/fiotec-viaCep.git
-
-
-Execute a API:
-
-dotnet run --project fiotec_viaCep.API
-
-
-Teste via Swagger ou Postman:
-
-GET http://localhost:5000/api/endereco/21040361
+dotnet test fiotec-viaCep.Infra.Tests
