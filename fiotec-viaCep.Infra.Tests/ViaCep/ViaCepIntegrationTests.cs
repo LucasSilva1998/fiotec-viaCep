@@ -1,4 +1,4 @@
-﻿using fiotec_viaCep.Infra.Services.Interface;
+﻿using fiotec_viaCep.Infra.Services.Interfaces;
 using fiotec_viaCep.Infra.Services.Services;
 using FluentAssertions;
 using System;

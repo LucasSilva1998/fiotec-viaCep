@@ -1,7 +1,7 @@
 using fiotec_viaCep.API.Extensions;
 using fiotec_viaCep.API.Middlewares;
 using fiotec_viaCep.Application.Extensions;
-using fiotec_viaCep.Infra.Services.Interface;
+using fiotec_viaCep.Infra.Services.Interfaces;
 using fiotec_viaCep.Infra.Services.Services;
 using Polly;
 using Polly.Extensions.Http;

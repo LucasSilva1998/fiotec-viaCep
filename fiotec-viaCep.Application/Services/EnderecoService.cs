@@ -1,7 +1,7 @@
 ﻿using fiotec_viaCep.Application.Exceptions;
 using fiotec_viaCep.Application.Interfaces;
 using fiotec_viaCep.Infra.Services.Dto;
-using fiotec_viaCep.Infra.Services.Interface;
+using fiotec_viaCep.Infra.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

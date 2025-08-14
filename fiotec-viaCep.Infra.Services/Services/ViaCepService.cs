@@ -1,5 +1,5 @@
 ﻿using fiotec_viaCep.Infra.Services.Dto;
-using fiotec_viaCep.Infra.Services.Interface;
+using fiotec_viaCep.Infra.Services.Interfaces;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text.Json;

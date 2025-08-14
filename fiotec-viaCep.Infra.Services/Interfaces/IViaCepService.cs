@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fiotec_viaCep.Infra.Services.Interface
+namespace fiotec_viaCep.Infra.Services.Interfaces
 {
     public interface IViaCepService
     {
