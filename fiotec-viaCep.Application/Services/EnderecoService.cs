@@ -17,9 +17,7 @@ namespace fiotec_viaCep.Application.Services
             if (string.IsNullOrWhiteSpace(cep))
                 throw new ParametroInvalidoException("O CEP não pode ser vazio.");
 
-            var endereco = await viaCepService.BuscarEnderecoPorCepAsync(cep, ct);
-
-            if (endereco == null)
+            var endereco = await viaCepService.BuscarEnderecoPorCepAsync(cep, ct) ??
                 throw new NaoEncontradoException($"CEP {cep} não encontrado");
 
             return endereco;
